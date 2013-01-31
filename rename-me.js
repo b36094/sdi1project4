@@ -6,39 +6,42 @@
 // library declaration & implementation
 var libObj = {
 	
-		phonePattern: function (numString) {
-			
-			var locInsert = numString.length;
+			phonePattern: function (numString) {
+				
+				
+				var endString = numString.indexOf("-");
+				
+				var string1 = numString.substring(0,endString);
+				
+				var stringLn = string1.length;
+				
+				var boolVar = false;
+				
+				var startString = numString.indexOf("-") + 1;
+				
+				var endString = numString.lastIndexOf("-");
+				
+				var string2 = numString.substring(startString, endString);
+				
+				var stringLn2 = string2.length;
+				
+				var startString = numString.lastIndexOf("-") + 1;
+				
+				var endString = numString.length;
+				
+				var string3 = numString.substring(startString, endString);
+				
+				var stringLn3 = string3.length;
+				
+				if (stringLn === 3 && stringLn2 === 3 && stringLn3 === 4)	{
 					
-			
-			if ((numString.length != 12) || (numString.length < 1)) {
-				
-				console.log(">12 or <1");				
-				
-			}	
-			
-			else {
-				
-				for (var i = 0; i <= locInsert; i++) {
-						
-					if (isNaN(numString.substring(i,i+1) === "-")) {
-						
-						var dashStore = i;
-							
-						}
-						
-						else {
-							
-							if (isNaN(numString.substring(i,i+1))) {
-								
-								console.log("is num" +i);	
-							}
-						
-											
-						}						
-					}	
+					boolVar = true; 	
 				}
+				
+				return boolVar;
 			},
+	
+		
 			
 			//email validation method
 			emailFunction: function validateForm(emailAddress) {
@@ -84,9 +87,9 @@ var libObj = {
 			//string num. to num int. conversion method
 			numConversion: function (numString) {
 				
-				if (isNaN(numString)) {
+				if (!isNaN(numString)) {
 					
-					console.log("Already a num.");	
+					return false;	//already a number
 				}				
 				
 				else {
@@ -96,7 +99,33 @@ var libObj = {
 				
 				
 				return localNum;	
-			}			
+			},
+			
+			// array method find total value of numbers
+			findNumArray: function (inputArray) {
+			
+					var localIndex = inputArray.length;
+					var localSum = 0;					
+					
+					for (var i = 0; i <= localIndex; i++) {
+					
+						if (!isNaN(inputArray[i])) {
+							
+							localSum += parseInt(inputArray[i]);	
+							
+						}
+						
+						else {
+							
+						}
+						
+					}
+					
+
+					return localSum;
+
+			}		
+				
 					
 				
 };		
@@ -110,10 +139,11 @@ var libObj = {
 
 
 // call methods
-var phonePatternCatch = libObj.phonePattern("422-323-300-");
+var phonePatternCatch = libObj.phonePattern("44-000-0000");
 
+console.log(phonePatternCatch);
 
-var validateFormCatch = libObj.emailFunction("myname@yahoo");
+var validateFormCatch = libObj.emailFunction("myname@yahoo.com");
 
 console.log(validateFormCatch);
 
@@ -125,7 +155,11 @@ var numDecFixCatch = libObj.numDecFix(22.23432, 4);
 
 console.log(numDecFixCatch);
 
-var numConversionCatch = libObj.numConversion("55");
+var numConversionCatch = libObj.numConversion("56");
 
 console.log(numConversionCatch);
+
+var findNumArrayCatch = libObj.findNumArray([4, "water", 1, "pickles", 1, "onions", 1, "1", 2, "SDI"]);
+
+console.log(findNumArrayCatch);
 
