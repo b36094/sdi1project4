@@ -114,11 +114,6 @@ var libObj = {
 							localSum += parseInt(inputArray[i]);	
 							
 						}
-						
-						else {
-							
-						}
-						
 					}
 					
 
